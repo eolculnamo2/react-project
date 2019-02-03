@@ -1,0 +1,128 @@
+@import '../globals';
+
+
+.Info__head-wrap {
+    padding: 2em 2em 0 2em;
+    background-color: rgba(173, 223, 239, .7);
+    box-shadow: 0 2px 2px $dark2;
+    height: 40vh;
+    z-index: 1;
+    position: relative;
+    h1 {
+        margin:0;
+    }
+
+}
+
+.Info__scroll-wrap {
+    padding: .5em 1em;
+    background-color: rgba(173, 223, 239, 0.7);
+    box-shadow: 0 2px 2px #777;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h1 {
+        margin: 0;
+    }
+
+    @media (min-width: 800px) {
+        padding: .5em 5em;
+    }
+}
+
+.Info__scroll-sticky {
+    position: sticky;
+    top: 0;
+    transform: translateY(-100px);
+    height: 0;
+    transition: all .3s;
+    z-index: 9001;
+    
+    &--show {
+        height: auto;
+        transform: translateY(0);
+        transition: all .3s;
+        h1 {
+            font-size: 1.3em;
+        }
+        @media (min-width: 800px) {
+            h1 { 
+                font-size: 2em;
+            }
+        }
+    }
+}
+
+.Info__hero-img {
+    background-image: url('https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    height: 44.2vh;
+    width: 100%;
+
+    &--scroll {
+        position: absolute;
+        top: 0;
+        height: 7.5vh;
+
+        @media (min-width: 800px) {
+            height: 8.2vh;
+        }
+    }
+}
+
+.Info__flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Info__address {
+    margin: 0;
+}
+
+.Info__event-button {
+    background: $secondary-dark;
+    color: white;
+    border: 0;
+    padding: 1em 2em;
+    font-size: .9em;
+    margin-top: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 2px $dark1;
+    outline: none;
+    border-radius: 3px;
+
+    &:hover {
+        background: $secondary;
+        transition: all .2s;
+    }
+
+    &--scroll {
+        margin: 0;
+        font-size: .75em;
+        @media (min-width: 800px) {
+            font-size: .9em;
+        }
+    }
+}
+
+.Info__description {
+    border-bottom: 4px solid $primary;
+}
+
+.Info__gray-wrap {
+    margin: auto;
+    max-width: $bodyWidth;
+    font-size: 1.1em;
+    padding: 0 1em;
+}
+
+.Info__subtitle {
+    border-top: 4px solid $secondary;
+    padding-top: .8em;
+}

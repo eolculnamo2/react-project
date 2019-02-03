@@ -1,0 +1,13 @@
+@import './globals';
+
+body { 
+    margin: 0;
+   // font-family: 'Roboto', sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: #fafafa;
+    overflow-x: hidden;
+}
+
+a {
+    color: $secondary;
+}

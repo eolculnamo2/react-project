@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import renderHTML from 'react-render-html';
 import Fab from '@material-ui/core/Fab';
-import { formatDate } from '../accessories/helpers';
+import { formatTime } from '../accessories/helpers';
 
 const Info = props => {
 
@@ -15,7 +15,7 @@ const Info = props => {
            venue
         } = props.meetup;
 
-        local_time = formatDate(local_time);
+        local_time = formatTime(local_time);
         
     return (
         <div>

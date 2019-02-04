@@ -24,6 +24,8 @@ app.get('/get-meetup-rsvps', (req,res) => {
     });
 });
 
+
+//Remember if dont do SSR, get rid of webpack config for server and index.js
 app.get('/', (req,res) => res.sendFile(__dirname+'/public/index.html') );
 
 app.listen(8080, () => console.log("Server Started"));

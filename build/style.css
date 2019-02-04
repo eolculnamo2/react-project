@@ -4,6 +4,18 @@ body {
   background: #fafafa;
   overflow-x: hidden; }
 
+h2 {
+  font-size: 1.2em; }
+  @media (min-width: 800px) {
+    h2 {
+      font-size: 1.5em; } }
+
+p {
+  font-size: .85em; }
+  @media (min-width: 800px) {
+    p {
+      font-size: 1em; } }
+
 a {
   color: #3f51b5; }
 
@@ -15,7 +27,11 @@ a {
   z-index: 1;
   position: relative; }
   .Info__head-wrap h1 {
-    margin: 0; }
+    margin: 0;
+    font-size: 1.5em; }
+  @media (min-width: 800px) {
+    .Info__head-wrap h1 {
+      font-size: 2em; } }
 
 .Info__scroll-wrap {
   padding: .5em 1em;
@@ -44,7 +60,10 @@ a {
     transform: translateY(0);
     transition: all .3s; }
     .Info__scroll-sticky--show h1 {
-      font-size: 1.3em; }
+      font-size: 1em; }
+    @media (min-width: 400px) {
+      .Info__scroll-sticky--show h1 {
+        font-size: 1.3em; } }
     @media (min-width: 800px) {
       .Info__scroll-sticky--show h1 {
         font-size: 2em; } }
@@ -59,7 +78,10 @@ a {
   .Info__hero-img--scroll {
     position: absolute;
     top: 0;
-    height: 7.5vh; }
+    height: 6vh; }
+    @media (min-width: 400px) {
+      .Info__hero-img--scroll {
+        height: 7.5vh; } }
     @media (min-width: 800px) {
       .Info__hero-img--scroll {
         height: 8.2vh; } }
@@ -74,25 +96,34 @@ a {
   margin: 0; }
 
 .Info__event-button {
-  background: #002984;
+  background: #3f51b5;
   color: white;
   border: 0;
-  padding: 1em 2em;
-  font-size: .9em;
+  padding: .2em 1em;
   margin-top: 1em;
   cursor: pointer;
   box-shadow: 0 2px 2px #333;
   outline: none;
-  border-radius: 3px; }
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: .75em; }
+  @media (min-width: 400px) {
+    .Info__event-button {
+      padding: 1em 2em; } }
+  @media (min-width: 800px) {
+    .Info__event-button {
+      font-size: .9em; } }
   .Info__event-button:hover {
-    background: #3f51b5;
+    background: #002984;
     transition: all .2s; }
   .Info__event-button--scroll {
-    margin: 0;
-    font-size: .75em; }
-    @media (min-width: 800px) {
-      .Info__event-button--scroll {
-        font-size: .9em; } }
+    margin: 0; }
+
+.Info__meet-time {
+  font-size: 1em; }
+  @media (min-width: 800px) {
+    .Info__meet-time {
+      font-size: 1.17em; } }
 
 .Info__description {
   border-bottom: 4px solid #addfef; }
@@ -111,7 +142,7 @@ a {
   margin-right: 1em;
   margin-top: 1em;
   height: 200px;
-  width: 150px;
+  width: 75%;
   overflow-y: auto;
   border: 1px solid #777;
   text-align: center;
@@ -120,16 +151,22 @@ a {
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0 2px 2px #dadada; }
+  @media (min-width: 400px) {
+    .Attendee__wrap {
+      width: 150px; } }
   .Attendee__wrap:hover {
     box-shadow: 2px 4px 4px #dadada;
     transform: translate(-2px, -2px); }
 
 .Attendee__photo {
-  width: 100px;
+  width: 125px;
   display: block;
   margin: auto;
   border: 2px solid #dadada;
   border-radius: 3px; }
+  @media (min-width: 400px) {
+    .Attendee__photo {
+      width: 100px; } }
 
 .Attendee__no-margin {
   margin: 0; }
@@ -153,8 +190,7 @@ a {
   justify-content: space-around;
   max-width: 700px;
   width: 100%;
-  margin: auto;
-  padding: 0 2em 2em 0; }
+  margin: auto; }
 
 .App__fab-wrap {
   position: fixed;

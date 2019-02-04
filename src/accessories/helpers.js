@@ -9,7 +9,7 @@ const fetchData = async uri => {
     return res; 
 };
 
-const formatDate = input => {
+const formatTime = input => {
     const timeSplit = input.split(":");
     timeSplit[0] = +timeSplit[0]; //converts to number
 
@@ -23,6 +23,6 @@ const scrollToTop = () => document.getElementById('app').scrollIntoView({behavio
 export { 
          checkIfRendered,
          fetchData, 
-         formatDate,
+         formatTime,
          scrollToTop 
         };

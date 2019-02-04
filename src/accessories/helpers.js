@@ -24,4 +24,5 @@ export {
          checkIfRendered,
          fetchData, 
          formatDate,
-         scrollToTop };
+         scrollToTop 
+        };

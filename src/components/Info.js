@@ -19,15 +19,14 @@ const Info = props => {
         
     return (
         <div>
-            <div className="Info__hero-img">
-            </div>
-            <div className="Info__head-wrap Info__flex-center">
+            <div style={{height: props.heroHeight}} className="Info__hero-img"></div>
+            <div ref={props.heroRef} className="Info__head-wrap Info__flex-center">
                     <h1>{name}</h1>
-                    <h3>{moment(local_date).format('MMMM Do YYYY')} at {local_time}</h3>
+                    <h3 className="Info__meet-time">{moment(local_date).format('MMMM Do YYYY')} at {local_time}</h3>
                     <p className="Info__address">{venue ? venue.name : ''}</p>
                     <p className="Info__address">{venue ? venue.address_1 : ''}</p>
                     <p className="Info__address">{venue ? venue.address_2 : ''}</p>
-                    <a href={link} target="_blank"><button className="Info__event-button">View Event</button></a>
+                    <a href={link} target="_blank"><button className="Info__event-button">Attend</button></a>
             </div>
             <div className="Info__gray-wrap">
                 <h2 className="Info__subtitle">Description</h2>

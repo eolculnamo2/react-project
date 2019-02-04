@@ -8,6 +8,21 @@ body {
     overflow-x: hidden;
 }
 
+h2 {
+    font-size: 1.2em;
+
+    @media(min-width: 800px) {
+        font-size: 1.5em;
+    }
+}
+
+p {
+    font-size: .85em;
+
+    @media(min-width: 800px) {
+        font-size: 1em;
+    }
+}
 a {
     color: $secondary;
 }

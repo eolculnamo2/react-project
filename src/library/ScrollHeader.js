@@ -7,13 +7,12 @@ const ScrollHeader = props => {
      } = props.info;
     return (
         <div className={"Info__scroll-sticky "+ props.displayClass} >
-            <div className="Info__hero-img Info__hero-img--scroll">
-            </div>
-            <div className="Info__scroll-wrap">
+            <div style={{height: props.scrollHeight}} className="Info__hero-img Info__hero-img--scroll"></div>
+            <div ref={props.scrollRef} className="Info__scroll-wrap">
                     <h1>{name}</h1>
                     <a href={link} target="_blank">
                     <button className="Info__event-button Info__event-button--scroll">
-                        View Event
+                        Attend
                     </button></a>
             </div>
         </div>

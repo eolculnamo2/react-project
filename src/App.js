@@ -1,9 +1,13 @@
 import './scss/main.scss';
 import React from 'react';
 import { checkIfRendered, fetchData, scrollToTop } from './accessories/helpers';
+
+//Material
 import Fab from '@material-ui/core/Fab';
 import Checkbox from '@material-ui/core/Checkbox';
+import CircularProgress from '@material-ui/core/CircularProgress'
 
+//Components
 import Attendee from './components/Attendee';
 import Info from './components/Info';
 import ScrollHeader from './library/ScrollHeader';
@@ -18,7 +22,9 @@ class App extends React.Component {
             going: true,
             waitList: true,
             displayFab: '',
-            scrollHeaderDisplay: ''
+            scrollHeaderDisplay: '',
+            scrollHeight: '',
+            heroHeight: ''
         }
         this.handleScroll = this.handleScroll.bind(this);
     }
@@ -28,15 +34,21 @@ class App extends React.Component {
         .then( meetup => this.setState({meetup: meetup[0]}, () => this.retrieveRsvps() ));
         if(checkIfRendered()) {
             window.addEventListener('scroll', this.handleScroll.bind(this));
+
+            //needed to guarantee matching heights for bg photos and information overlay
+            this.scrollRef = React.createRef();
+            this.heroRef = React.createRef();
+
+            window.addEventListener('resize', () => this.matchHeights.bind(this) );
         }
     }
 
     retrieveRsvps() {
-        const { meetup } = this.state
+        const { meetup } = this.state;
 
         if(meetup && meetup.id) {
             fetchData('/get-meetup-rsvps?id='+meetup.id)
-            .then( rsvps => this.setState({rsvps}) );
+            .then( rsvps => this.setState({rsvps}, () => this.matchHeights() ));
         }
     }
 
@@ -52,21 +64,36 @@ class App extends React.Component {
     handleScroll() {
         if(checkIfRendered()) {
             if(window.pageYOffset > 300) {
-                this.setState({displayFab: "App__fab-display", scrollHeaderDisplay: "Info__scroll-sticky--show"});
+                this.setState({displayFab: "App__fab-display", 
+                               scrollHeaderDisplay: "Info__scroll-sticky--show"});
             } else {
-                this.setState({displayFab: "", scrollHeaderDisplay: ""});
+                this.setState({displayFab: "", 
+                               scrollHeaderDisplay: ""});
             }
         }
+
+        //guarantee matching heights for bg image and info
+        this.matchHeights();
+    }
+
+    matchHeights() {
+        let scrollHeight = this.scrollRef.current ? this.scrollRef.current.offsetHeight+'px' : '';
+        let heroHeight = this.heroRef.current ? this.heroRef.current.offsetHeight+'px' : '';
+        this.setState({scrollHeight, heroHeight})
     }
 
     render() {
-        /*TODO FIGURE OUT SSR*/
         if(this.state.rsvps.length !== 0) {
             return (
                 <div>
-                    <ScrollHeader info={this.state.meetup} displayClass={this.state.scrollHeaderDisplay} />
+                    <ScrollHeader info={this.state.meetup} 
+                                  displayClass={this.state.scrollHeaderDisplay}
+                                  scrollHeight={this.state.scrollHeight}
+                                  scrollRef={this.scrollRef} />
                     <div className="App__upper-bar"></div>
-                        <Info meetup={this.state.meetup} />
+                        <Info  heroHeight={this.state.heroHeight}
+                               heroRef={this.heroRef}
+                               meetup={this.state.meetup} />
                     <div className="App__lower-wrap">
                         <div className="App__attendee-wrap">
                             <div className="App__attendee-head-flex">
@@ -82,7 +109,7 @@ class App extends React.Component {
                                               style={{padding: '5px'}}/><span className="App__check-label">Wait List</span>
                                 </div>
                              </div>
-                            <div onScroll={()=>{alert("SCROLL")}} className="App__flex-attendees">
+                            <div className="App__flex-attendees">
                                 {this.state.rsvps.map( x => <Attendee key={x.member.id} 
                                                                       rsvps={x}
                                                                       showGoing={this.state.going}
@@ -90,12 +117,13 @@ class App extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className={"App__fab-wrap "+this.state.displayFab}
-                          >
+                    <div className={"App__fab-wrap "+this.state.displayFab}>
                         <Fab onClick={scrollToTop} disableRipple={true} color='primary'>Top</Fab>
                     </div>
                 </div>
             )
+        } else if(typeof window !== 'undefined') {
+            return <div className="App__spinner-wrap"><CircularProgress/></div>
         } else {
             return null;
         }

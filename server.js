@@ -4,6 +4,8 @@ const express = require('express'),
       app = express(),
       request = require('request');
 
+app.use(express.static('build'));
+
 app.get('/get-meetup-data', (req,res) => {
     request('https://api.meetup.com/reactjs-dallas/events?&sign=true&photo-host=public&page=1&key='+process.env.KEY, (error, response, body) => {
         if(error) {

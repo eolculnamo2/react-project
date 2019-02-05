@@ -23,8 +23,8 @@
 
 .Info__scroll-wrap {
     padding: .5em 1em;
-    background-color: rgba(173, 223, 239, 0.7);
-    box-shadow: 0 2px 2px #777;
+    background-color: $primary;
+    box-shadow: 0 2px 2px $dark2;
     z-index: 1;
     position: relative;
     display: flex;
@@ -44,27 +44,30 @@
     top: 0;
     transform: translateY(-100px);
     height: 0;
-    transition: all .3s;
+    transition: visibility .3s, transform .3s;
     z-index: 9001;
-    
+    visibility: hidden;
+
+    h1 {
+        font-size: 1em;
+    }
+    @media (min-width: 400px) {
+        h1 {
+            font-size: 1.3em;
+        }
+    }
+    @media (min-width: 800px) {
+        h1 { 
+            font-size: 2em;
+        }
+    }
+
     &--show {
+        top: 0;
+        visibility: visible;
         height: auto;
         transform: translateY(0);
-        transition: all .3s;
-        h1 {
-            font-size: 1em;
-        }
-
-        @media (min-width: 400px) {
-            h1 {
-                font-size: 1.3em;
-            }
-        }
-        @media (min-width: 800px) {
-            h1 { 
-                font-size: 2em;
-            }
-        }
+        transition: transform .3s;   
     }
 }
 

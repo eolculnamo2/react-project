@@ -40,8 +40,8 @@
 }
 
 .Info__scroll-sticky {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     transform: translateY(-100px);
     height: 0;

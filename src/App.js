@@ -23,7 +23,6 @@ class App extends React.Component {
             waitList: true,
             displayFab: '',
             scrollHeaderDisplay: '',
-            scrollHeight: '',
             heroHeight: ''
         }
         this.handleScroll = this.handleScroll.bind(this);
@@ -78,7 +77,7 @@ class App extends React.Component {
 
     matchHeights() {
         let heroHeight = this.heroRef.current ? this.heroRef.current.offsetHeight+'px' : '';
-        this.setState({scrollHeight, heroHeight})
+        this.setState({heroHeight})
     }
 
     render() {
@@ -86,7 +85,7 @@ class App extends React.Component {
             return (
                 <div>
                     <ScrollHeader info={this.state.meetup} 
-                                  displayClass={this.state.scrollHeaderDisplay} 
+                                  displayClass={this.state.scrollHeaderDisplay}
                                   />
                     <div className="App__upper-bar"></div>
                         <Info  heroHeight={this.state.heroHeight}

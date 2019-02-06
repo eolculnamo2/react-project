@@ -36,7 +36,7 @@ class App extends React.Component {
             window.addEventListener('scroll', this.handleScroll.bind(this));
 
             //needed to guarantee matching heights for bg photos and information overlay
-            this.scrollRef = React.createRef();
+
             this.heroRef = React.createRef();
 
             window.addEventListener('resize', () => this.matchHeights.bind(this) );
@@ -77,7 +77,6 @@ class App extends React.Component {
     }
 
     matchHeights() {
-        let scrollHeight = this.scrollRef.current ? this.scrollRef.current.offsetHeight+'px' : '';
         let heroHeight = this.heroRef.current ? this.heroRef.current.offsetHeight+'px' : '';
         this.setState({scrollHeight, heroHeight})
     }
@@ -87,9 +86,8 @@ class App extends React.Component {
             return (
                 <div>
                     <ScrollHeader info={this.state.meetup} 
-                                  displayClass={this.state.scrollHeaderDisplay}
-                                  scrollHeight={this.state.scrollHeight}
-                                  scrollRef={this.scrollRef} />
+                                  displayClass={this.state.scrollHeaderDisplay} 
+                                  />
                     <div className="App__upper-bar"></div>
                         <Info  heroHeight={this.state.heroHeight}
                                heroRef={this.heroRef}
